@@ -2,6 +2,15 @@ import turtle
 from turtle import *
 from random import randint
 
+def make_tree_segment(size, top_position):
+    segments = turtle.Turtle()
+    segments.color("green")
+    segments.begin_fill()
+    segments.setposition(0, top_position)
+    segments.setposition(size, top_position - size)
+    segments.setposition(-size, top_position - size)
+    segments.setposition(0, top_position)
+    segments.end_fill()
 
 def fond(r):
     up()
@@ -117,8 +126,29 @@ def on_exit():
 turtle.onkeypress(on_exit, 'e')
 turtle.listen()
 
-speed(100000)
-# arbre(5)
-fond(5)
-maison(100)
-Ciel_Etoile(10)
+speed(0)
+# arbre(1)
+# fond(5)
+# maison(100)
+# Ciel_Etoile(10)
+
+def make_tree():
+    # Tronc
+    tronc =  turtle.Turtle()
+    tronc.color("brown")
+    tronc.right(90)
+    tronc.pensize(60)
+    tronc.penup()
+    tronc.forward(100)
+    tronc.pendown()
+    tronc.forward(300)
+
+    color("green")
+    tree_segments = ((50, 20), (80, 0), (120, -30), (150, -60))
+    for size, top_position in tree_segments:
+        make_tree_segment(size, top_position)
+
+
+make_tree()
+
+exitonclick()
